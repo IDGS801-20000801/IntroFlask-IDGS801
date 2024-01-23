@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 
-{%block container %}
-<h1>
-    Hola desde Maestros UTL
-</h1>
-{%endblock}
+{% block container %}
+    <h1>Hola desde maestros</h1>
+    <h2>Escuela: {{titulo}}</h2>
+
+    {% for nombre in nombres %}
+        <h3>{{nombre}}</h3>
+    {% endfor %}
+{% endblock %}

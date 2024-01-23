@@ -8,11 +8,20 @@ def index():
 
 @app.route("/alumnos")
 def alumnos():
-    return render_template("alumnos.html")
+    titulo = "UTL"
+    nombres = ["Shava", "Alexa", "Ceci", "Armando", "Cordova"]
+    return render_template(
+        "alumnos.html", 
+        titulo = titulo, nombres = nombres
+    )
 
 @app.route("/maestros")
 def maestros():
     return render_template("maestros.html")
+
+@app.route("/hola")
+def hola():
+    return "<h1>Saludos desde Hola</h1>"
 
 @app.route("/Saludo")
 def saludo():
