@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -48,5 +48,32 @@ def suma(n1, n2):
 def func2(d="Dario"):
     return "El nombre de User es: " + d
 
-if __name__ ==  "_main_":
+@app.route("/calcular", methods=["GET", "POST"])
+def calcular():
+    if request.method == "POST" :
+        num1 = request.form.get("n1")
+        num2 = request.form.get("n2")
+        return "La multiplicación de {} * {} = {}".format(num1, num2, str(int(num1) * int(num2)))
+    return '''
+        <form action="/calcular" method="POST">
+            <label> N1: </label>
+            <input type = "text" name = "n1"><br>
+            <label> N2: </label>
+            <input type = "text" name = "n2"><br>
+            <input type = "submit"/>
+        </form>
+    '''
+    
+@app.route("/OperasBas")
+def operas():
+    return render_template("OperasBas.html")
+
+@app.route("/resultado", methods=["GET", "POST"])
+def resultado():
+    if request.method == "POST" :
+        num1 = request.form.get("n1")
+        num2 = request.form.get("n2")
+        return "La multiplicación de {} x {} = {}".format(num1, num2, str(int(num1) * int(num2)))
+    
+if __name__ ==  "__main__":
     app.run(debug=True)
