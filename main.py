@@ -15,8 +15,13 @@ def alumnos():
     #     "alumnos.html", 
     #     titulo = titulo, nombres = nombres
     # )
+    
+    nom = ''
+    p_ap = ''
+    s_ap = ''
+    
     alumno_clase = forms.UserForm(request.form)
-    if request.form == 'POST' :
+    if request.form == 'POST' and alumno_clase.validate():
         nom = alumno_clase.nombre.data
         p_ap = alumno_clase.a_paterno.data
         s_ap = alumno_clase.a_materno.data
@@ -25,7 +30,7 @@ def alumnos():
         print('Nombre {} - Primer Apellido {} - Segundo Apellido {} - Edad {} - Edad {}'
               .format(nom, p_ap, s_ap, edad))
     return render_template("alumnos.html", 
-                form = alumno_clase, nom = nom, p_ap = p_ap, s_ap = s_ap)
+                form = alumno_clase, nombre = nom, a_paterno = p_ap, a_materno = s_ap)
 
 @app.route("/maestros")
 def maestros():
