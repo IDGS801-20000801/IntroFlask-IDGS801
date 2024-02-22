@@ -36,20 +36,23 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            animation: flash 2s infinite alternate;
+            animation: glitch 2s infinite;
         }
 
-        @keyframes flash {
-            from {
-                opacity: 1;
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
             }
-            to {
-                opacity: 0.5;
+            20%, 80% {
+                transform: translate(-5px, 5px);
+            }
+            40%, 60% {
+                transform: translate(5px, -5px);
             }
         }
 
         a {
-            color: #3498db;
+            color: #e74c3c;
             text-decoration: none;
             font-weight: bold;
         }
@@ -62,9 +65,8 @@
 <body>
     <div class="container">
         <img src="https://placekitten.com/600/400" alt="Error 404 - Página no encontrada">
-        <h1>¡Error 404!</h1>
-        <p>El concierto ha sido cancelado debido a desafinaciones en la red. Parece que te has perdido en la oscuridad.</p>
-        <p>Vuelve a <a href="/" title="Ir a la página principal">la luz</a> antes de que los monstruos encuentren tu camino.</p>
+        <h1>¡Virus detectado!</h1>
+        <p>La página que buscas ha sido infectada. Nuestro sistema de seguridad te recomienda volver a <a href="/" title="Ir a la página principal">un lugar seguro</a> antes de que se propague.</p>
     </div>
 </body>
 </html>
