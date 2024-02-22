@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Página no encontrada</title>
+    <style>
+        body {
+            font-family: 'Impact', sans-serif;
+            background: linear-gradient(to right, #ff4e50, #fc913a);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: flash 2s infinite alternate;
+        }
+
+        @keyframes flash {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.5;
+            }
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://placekitten.com/600/400" alt="Error 404 - Página no encontrada">
+        <h1>¡Error 404!</h1>
+        <p>El concierto ha sido cancelado debido a desafinaciones en la red. Parece que te has perdido en la oscuridad.</p>
+        <p>Vuelve a <a href="/" title="Ir a la página principal">la luz</a> antes de que los monstruos encuentren tu camino.</p>
+    </div>
+</body>
+</html>

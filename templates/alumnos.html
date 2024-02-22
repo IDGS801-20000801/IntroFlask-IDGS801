@@ -2,53 +2,107 @@
 
 {% block content %}
 {% import "_macros.html" as macros %}
-<h1>Hola desde alumnos!</h1>
-<form action="" method="POST" novalidate>
-    <div class="row g-4">
-        <div class="col-md-3">
+<style>
+    .container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #007bff;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: #333;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="mb-4">¡Bienvenido a la Página de Alumnos!</h1>
+    <form action="" method="post">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    {{
+                        macros.new_field(
+                            form.nombre, 
+                            class='form-control',
+                            id='nombre'
+                        )
+                    }}
+                </div>
+            </div>
+            
+			<div class="col-md-4">
             {{
                 macros.new_field(
-                    form.nombre, 
+                    form.primerApellido, 
                     class='form-control'
                 )
             }}
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{
                 macros.new_field(
-                    form.a_paterno, 
+                    form.segundoApellido, 
                     class='form-control'
                 )
             }}
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{
                 macros.new_field(
-                    form.a_materno, 
+                    form.edad,
                     class='form-control'
                 )
             }}
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{
                 macros.new_field(
-                    form.edad, 
+                    form.correo,
                     class='form-control'
                 )
             }}
         </div>
 
-        <div class="col-12">
-            <button type="submit" class="btn btn-secondary">
-                Registrar
-            </button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    Registrar
+                </button>
+            </div>
         </div>
+    </form>
+    <div class="mt-4">
+        <h3>Detalles del Alumno:</h3>
+        <p class="lead">Nombre: {{ nombre }}</p>
+        <p class="lead">Primer Apellido: {{ primerApellido }}</p>
+        <p class="lead">Segundo Apellido: {{ segundoApellido }}</p>
     </div>
-</form><br/>
-<h3>Nombre: {{nom}}</h3>
-<h3>Primer Apellido: {{p_ap}}</h3>
-<h3>Segundo Apellido: {{s_ap}}</h3>
+</div>
 {% endblock %}

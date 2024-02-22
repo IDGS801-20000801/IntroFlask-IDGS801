@@ -1,36 +1,63 @@
 from flask import Flask, render_template, request
+from flask import flash
+from flask import g
+
 import forms
 
 app = Flask(__name__)
+
+# Permite mandar peticiones flash como protección para las peticiones que se van mandando
+app.secret_key = 'This is my key'
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+# Manda una petición antes de realizar cualquier cambio
+@app.before_request
+def before_request():
+    g.nombre = "MENSO"
+    print("before 1")
+    
+@app.after_request
+def after_request(response):
+    print("after 3")
+    return response
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/alumnos", methods = ["GET", "POST"])
+# Ruta para alumnos
+@app.route("/alumnos", methods=["GET", "POST"])
 def alumnos():
-    # titulo = "UTL"
-    # nombres = ["Shava", "Alexa", "Ceci", "Armando", "Cordova"]
-    # return render_template(
-    #     "alumnos.html", 
-    #     titulo = titulo, nombres = nombres
-    # )
     
-    nom = ''
-    p_ap = ''
-    s_ap = ''
+    print("WAKALA {}".format(g.nombre))
     
-    alumno_clase = forms.UserForm(request.form)
-    if request.form == 'POST' and alumno_clase.validate():
-        nom = alumno_clase.nombre.data
-        p_ap = alumno_clase.a_paterno.data
-        s_ap = alumno_clase.a_materno.data
-        edad = alumno_clase.edad.data
+    nombre = ''
+    primerApellido = ''
+    segundoApellido = ''
+    correo = ''
+    edad = ''
+    alumno_class = forms.UserForm(request.form)
     
-        print('Nombre {} - Primer Apellido {} - Segundo Apellido {} - Edad {} - Edad {}'
-              .format(nom, p_ap, s_ap, edad))
+    if request.method == "POST" and alumno_class.validate():
+        nombre = alumno_class.nombre.data
+        primerApellido = alumno_class.primerApellido.data
+        segundoApellido = alumno_class.segundoApellido.data
+        correo = alumno_class.correo.data
+        edad = alumno_class.correo.data
+        
+        mensaje='Wilkommen {}'.format(nombre)
+        flash(mensaje)
+
     return render_template("alumnos.html", 
-                form = alumno_clase, nombre = nom, a_paterno = p_ap, a_materno = s_ap)
+                           form = alumno_class, 
+                           nombre = nombre, 
+                           primerApellido = primerApellido, 
+                           segundoApellido = segundoApellido, 
+                           correo = correo, 
+                           edad = edad)
 
 @app.route("/maestros")
 def maestros():
